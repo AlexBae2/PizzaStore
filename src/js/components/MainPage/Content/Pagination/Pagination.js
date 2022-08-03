@@ -5,17 +5,27 @@ import { setCurrentPage } from "../../../../redux/contentReducer";
 const Pagination = () => {
   const dispatch = useDispatch();
   const totalPizzasCount = useSelector((state) => state.main.totalPizzasCount);
+  const pizzasPerPage = useSelector((state) => state.main.pizzasPerPage);
+  const countPages = Math.round(totalPizzasCount / pizzasPerPage);
+  const currentPage = useSelector((state) => state.main.currentPage);
+
   const switchPage = (page) => {
     dispatch(setCurrentPage({ page }));
   };
-  const b = 0;
+  const activeButton = (index) => {
+    return currentPage === index ? classes.activeButton : null;
+  };
 
   return (
     <div className={classes.paginationWrapper}>
       <div className={classes.pagination}>
         <ul className={classes.paginationList}>
-          {[...Array(totalPizzasCount).keys()].map((item, indexItem) => (
-            <li onClick={() => switchPage(indexItem + 1)} key={item}>
+          {[...Array(countPages).keys()].map((item, indexItem) => (
+            <li
+              className={activeButton(indexItem + 1)}
+              onClick={() => switchPage(indexItem + 1)}
+              key={item}
+            >
               {indexItem + 1}
             </li>
           ))}
