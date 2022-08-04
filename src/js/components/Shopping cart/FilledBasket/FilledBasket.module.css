@@ -1,0 +1,8 @@
+.items {
+}
+.container {
+  max-width: 820px;
+  margin: 90px auto;
+  width: 90%;
+  height: 100vh;
+}

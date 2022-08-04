@@ -1,13 +1,15 @@
 import classes from "./Pagination.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { setCurrentPage } from "../../../../redux/contentReducer";
+import { setCurrentPage } from "../../../../redux/Reducers/contentReducer";
 
 const Pagination = () => {
   const dispatch = useDispatch();
-  const totalPizzasCount = useSelector((state) => state.main.totalPizzasCount);
-  const pizzasPerPage = useSelector((state) => state.main.pizzasPerPage);
+  const totalPizzasCount = useSelector(
+    (state) => state.mainPage.totalPizzasCount
+  );
+  const pizzasPerPage = useSelector((state) => state.mainPage.pizzasPerPage);
   const countPages = Math.round(totalPizzasCount / pizzasPerPage);
-  const currentPage = useSelector((state) => state.main.currentPage);
+  const currentPage = useSelector((state) => state.mainPage.currentPage);
 
   const switchPage = (page) => {
     dispatch(setCurrentPage({ page }));

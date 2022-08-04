@@ -1,47 +1,77 @@
-import {useDispatch} from 'react-redux'
-import {setSelectPizza, setActiveDough, setActiveSize} from "../../../../../redux/contentReducer";
+import { useDispatch, useSelector } from "react-redux";
+import PlusSvg from "../../../../../Utility/PlusSvg";
+import { useState } from "react";
+import cartSlicer, {
+  addItem,
+} from "../../../../../redux/Reducers/headerReducer";
 
-const Item = ({index,activeDough,activeSize,count,urlImg, title, price, sizes, doughs}) => {
-    const dispatch = useDispatch()
-    return (
-        <div className="pizza-block">
-            <img
-                className="pizza-block__image"
-                src={urlImg}
-                alt="Pizza"
-            />
-            <h4 className="pizza-block__title">{title}</h4>
-            <div className="pizza-block__selector">
-                <ul>
-                    {doughs.map((dough,doughIndex) => <li key={doughIndex} className={dough === activeDough ? 'active' : null}
-                        onClick={() => dispatch(setActiveDough({index,dough}))}>{dough}</li>)}
-                </ul>
-                <ul>
-                    {sizes.map((size,sizeIndex) => <li key={sizeIndex} className={size === activeSize ? 'active' : null}
-                                                         onClick={() => dispatch(setActiveSize({index,size}))}>{size}</li>)}
-                </ul>
-            </div>
-            <div className="pizza-block__bottom">
-                <div className="pizza-block__price">{`От ${price}р`}</div>
-                <div className="button button--outline button--add" onClick={() => dispatch(setSelectPizza({index}))}>
-                    <svg
-                        width="12"
-                        height="12"
-                        viewBox="0 0 12 12"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            d="M10.8 4.8H7.2V1.2C7.2 0.5373 6.6627 0 6 0C5.3373 0 4.8 0.5373 4.8 1.2V4.8H1.2C0.5373 4.8 0 5.3373 0 6C0 6.6627 0.5373 7.2 1.2 7.2H4.8V10.8C4.8 11.4627 5.3373 12 6 12C6.6627 12 7.2 11.4627 7.2 10.8V7.2H10.8C11.4627 7.2 12 6.6627 12 6C12 5.3373 11.4627 4.8 10.8 4.8Z"
-                            fill="white"
-                        />
-                    </svg>
-                    <span>Добавить</span>
-                    <i>{count}</i>
-                </div>
-            </div>
+const Item = ({ index, urlImg, title, price, sizes, doughs }) => {
+  const dispatch = useDispatch();
+
+  const countPizzasInState = useSelector(
+    (state) => state.cartSlicer.item
+  ).filter((u) => u.id === index).length;
+  const [activeDough, setActiveDough] = useState(doughs[0]);
+  const [activeSize, setActiveSize] = useState(sizes[0]);
+  const [countPizzas, setCountPizzas] = useState(countPizzasInState);
+
+  const addPizzaInBasket = () => {
+    const pizza = {
+      id: index,
+      urlImg,
+      title,
+      price,
+      dough: activeDough,
+      size: activeSize,
+    };
+    dispatch(addItem(pizza));
+  };
+
+  return (
+    <div className="pizza-block">
+      <img className="pizza-block__image" src={urlImg} alt="Pizza" />
+      <h4 className="pizza-block__title">{title}</h4>
+      <div className="pizza-block__selector">
+        <ul>
+          {doughs.map((dough) => (
+            <li
+              key={dough}
+              onClick={() => setActiveDough(dough)}
+              className={activeDough === dough ? "active" : null}
+            >
+              {dough}
+            </li>
+          ))}
+        </ul>
+        <ul>
+          {sizes.map((size) => (
+            <li
+              key={size}
+              onClick={() => setActiveSize(size)}
+              className={activeSize === size ? "active" : null}
+            >
+              {size}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="pizza-block__bottom">
+        <div className="pizza-block__price">{`От ${price}р`}</div>
+        <div className="button button--outline button--add">
+          <PlusSvg />
+          <span
+            onClick={() => {
+              addPizzaInBasket();
+              setCountPizzas(countPizzas + 1);
+            }}
+          >
+            Добавить
+          </span>
+          <i>{countPizzas}</i>
         </div>
-    )
+      </div>
+    </div>
+  );
 };
 
 export default Item;

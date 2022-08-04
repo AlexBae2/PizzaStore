@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   setActiveCategory,
   setCurrentPage,
-} from "../../../../redux/contentReducer";
+} from "../../../../redux/Reducers/contentReducer";
 
 const CategoriesItems = () => {
   const categories = [
@@ -16,7 +16,7 @@ const CategoriesItems = () => {
     "Открытая",
   ];
   const dispatch = useDispatch();
-  const filterCategory = useSelector((state) => state.main.filterCategory);
+  const filterCategory = useSelector((state) => state.mainPage.filterCategory);
 
   const setCategory = ({ category }) => {
     dispatch(setCurrentPage({ page: 1 }));

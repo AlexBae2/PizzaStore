@@ -1,0 +1,54 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  font-family: "Proxima Nova";
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 39px;
+  margin-bottom: 10px;
+}
+
+.smile {
+  display: flex;
+  justify-content: center;
+  max-width: 32px;
+  max-height: 32px;
+}
+.smile img {
+  display: block;
+  width: 100%;
+}
+.subTitle {
+  text-align: center;
+  opacity: 0.6;
+  margin-bottom: 47px;
+}
+.img {
+  margin-bottom: 80px;
+}
+.img img {
+  background-size: cover;
+}
+.button {
+}
+.button button {
+  padding: 10px 25px;
+  font-family: "Proxima Nova";
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  color: #ffffff;
+  background: #282828;
+  border-radius: 30px;
+  max-width: 210px;
+  cursor: pointer;
+}

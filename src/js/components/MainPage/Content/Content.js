@@ -7,9 +7,9 @@ import SortFabric from "../../../Utility/SortFabric";
 
 const Content = () => {
   const dispatch = useDispatch();
-  const currentPage = useSelector((state) => state.main.currentPage);
-  const sortBy = useSelector((state) => state.main.sortBy);
-  const filterCategory = useSelector((state) => state.main.filterCategory);
+  const currentPage = useSelector((state) => state.mainPage.currentPage);
+  const sortBy = useSelector((state) => state.mainPage.sortBy);
+  const filterCategory = useSelector((state) => state.mainPage.filterCategory);
 
   useEffect(() => {
     SortFabric.createSort({
@@ -18,8 +18,7 @@ const Content = () => {
       filterCategory,
       dispatch,
     });
-  });
-
+  }, [sortBy, filterCategory, currentPage]);
   return (
     <div className="content">
       <div className="container">

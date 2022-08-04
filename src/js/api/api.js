@@ -6,23 +6,46 @@ const instance = axios.create({
 
 const userApi = {
   sortByPrice({ currentPage, filterCategory }) {
-    debugger;
-    return instance.get(
-      `?page=${currentPage}&limit=6&sortBy=price&order=asc&types[]=${filterCategory}`
-    );
+    return instance.get(``, {
+      params: {
+        page: currentPage,
+        "types[]": filterCategory,
+        limit: 6,
+        sortBy: "price",
+      },
+    });
   },
   sortByRating({ currentPage, filterCategory }) {
-    return instance.get(
-      `?page=${currentPage}&limit=6&sortBy=rating&order=desc&types[]=${filterCategory}`
-    );
+    return instance.get(``, {
+      params: {
+        page: currentPage,
+        "types[]": filterCategory,
+        limit: 6,
+        sortBy: "rating",
+        order: "desc",
+      },
+    });
   },
   sortByAlphabet({ currentPage, filterCategory }) {
-    return instance.get(
-      `?page=${currentPage}&limit=6&sortBy=title&types[]=${filterCategory}`
-    );
+    return instance.get(``, {
+      params: {
+        page: currentPage,
+        "types[]": filterCategory,
+        limit: 6,
+        sortBy: "title",
+      },
+    });
   },
   getCountPage({ sortBy, filterCategory }) {
-    return instance.get(`?sortBy=${sortBy}&types[]=${filterCategory}`);
+    return instance.get(``, {
+      params: {
+        sortBy,
+        "types[]": filterCategory,
+      },
+    });
+  },
+  getAllPizzas() {
+    return instance.get(``);
   },
 };
 

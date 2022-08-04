@@ -2,7 +2,7 @@ import Item from "./Item/Item";
 import { useSelector } from "react-redux";
 
 const Items = () => {
-  const pizzas = useSelector((state) => state.main.pizzas);
+  const pizzas = useSelector((state) => state.mainPage.pizzas);
 
   return (
     <div className="content__items">
@@ -15,8 +15,6 @@ const Items = () => {
           price={pizza.price}
           sizes={pizza.size}
           doughs={pizza.dough}
-          activeDough={pizza.active_dough}
-          activeSize={pizza.active_size}
         />
       ))}
     </div>

@@ -1,5 +1,8 @@
 import userApi from "../api/api";
-import { setPizzas, setTotalPizzasCount } from "../redux/contentReducer";
+import {
+  setPizzas,
+  setTotalPizzasCount,
+} from "../redux/Reducers/contentReducer";
 
 class SortFabric {
   static createSort({ type, currentPage, filterCategory, dispatch }) {

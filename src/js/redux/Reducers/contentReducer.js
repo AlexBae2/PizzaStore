@@ -1,20 +1,15 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
 
 export const setPizzas = createAction("setPizzas");
-export const setSelectPizza = createAction("addInShoplist");
-export const setActiveDough = createAction("setActiveDough");
-export const setActiveSize = createAction("setActiveSize");
 export const setActiveCategory = createAction("setActiveCategory");
 export const setTotalPizzasCount = createAction("setTotalPizzasCount");
 export const setCurrentPage = createAction("setCurrentPage");
 export const setSort = createAction("setSort");
 
-const pizzas = [];
-let filterCategory = "Все";
-
-const reducer = createReducer(
+const mainPage = createReducer(
   {
-    pizzas,
+    pizzas: [],
+    selectedPizza: [],
     filterCategory: "Все",
     currentPage: 1,
     totalPizzasCount: 0,
@@ -26,27 +21,6 @@ const reducer = createReducer(
       .addCase(setPizzas, (state, action) => {
         const { pizzas } = { ...action.payload };
         state.pizzas = pizzas;
-      })
-      .addCase(setSelectPizza, (state, action) => {
-        const { index } = { ...action.payload };
-        state.pizzas.map((u) => {
-          if (u.id == index) {
-            u.count++;
-            u.selected = true;
-          }
-        });
-      })
-      .addCase(setActiveDough, (state, action) => {
-        const { index, dough } = { ...action.payload };
-        state.pizzas.map((u) =>
-          u.id == index ? (u.active_dough = dough) : null
-        );
-      })
-      .addCase(setActiveSize, (state, action) => {
-        const { index, size } = { ...action.payload };
-        state.pizzas.map((u) =>
-          u.id == index ? (u.active_size = size) : null
-        );
       })
       .addCase(setActiveCategory, (state, action) => {
         const { category } = { ...action.payload };
@@ -68,4 +42,4 @@ const reducer = createReducer(
   }
 );
 
-export default reducer;
+export default mainPage;

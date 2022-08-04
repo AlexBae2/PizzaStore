@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { setCurrentPage, setSort } from "../../../../../redux/contentReducer";
+import {
+  setCurrentPage,
+  setSort,
+} from "../../../../../redux/Reducers/contentReducer";
 import { useDispatch, useSelector } from "react-redux";
 
 const Sort = () => {
@@ -18,7 +21,7 @@ const Sort = () => {
     },
   ];
   const dispatch = useDispatch();
-  const activeSort = useSelector((state) => state.main.sortBy);
+  const activeSort = useSelector((state) => state.mainPage.sortBy);
   const setActiveSort = (sort) => {
     dispatch(setCurrentPage({ page: 1 }));
     dispatch(setSort({ sort }));

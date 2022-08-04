@@ -1,10 +1,12 @@
-import { configureStore } from '@reduxjs/toolkit'
-import reducers from "./contentReducer";
+import { configureStore } from "@reduxjs/toolkit";
+import mainPage from "./Reducers/contentReducer";
+import cartSlicer from "./Reducers/headerReducer";
 
 export const store = configureStore({
-    reducer: {
-        main: reducers,
-    },
-})
+  reducer: {
+    cartSlicer,
+    mainPage,
+  },
+});
 
-window.store = store
+window.store = store;
