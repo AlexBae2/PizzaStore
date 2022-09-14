@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import PlusSvg from "../../../../../Utility/PlusSvg";
+import PlusSvg from "../../../../../Utility/SVG/PlusSvg";
 import { useState } from "react";
 import cartSlicer, {
   addItem,
@@ -24,6 +24,7 @@ const Item = ({ index, urlImg, title, price, sizes, doughs }) => {
       dough: activeDough,
       size: activeSize,
     };
+    console.log("1");
     dispatch(addItem(pizza));
   };
 

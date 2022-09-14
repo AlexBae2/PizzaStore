@@ -44,9 +44,6 @@ const userApi = {
       },
     });
   },
-  getAllPizzas() {
-    return instance.get(``);
-  },
 };
 
 export default userApi;

@@ -1,14 +1,22 @@
 import classes from "./FilledBasket.module.css";
 import { NavLink } from "react-router-dom";
-import Basket from "../../Header/Basket/Basket";
-import BasketSvg from "../../../Utility/BasketSvg";
-import TrashcanSvg from "../../../Utility/TrashcanSvg";
-import MinusSvg from "../../../Utility/MinusSvg";
-import PlusSvg from "../../../Utility/PlusSvg";
-import CrossSvg from "../../../Utility/CrossSvg";
-import BackButtonSvg from "../../../Utility/BackButtonSvg";
+import BasketSvg from "../../../Utility/SVG/BasketSvg";
+import TrashcanSvg from "../../../Utility/SVG/TrashcanSvg";
+import BackButtonSvg from "../../../Utility/SVG/BackButtonSvg";
+import Item from "./Item/Item";
+import { useDispatch, useSelector } from "react-redux";
+import { clearItems } from "../../../redux/Reducers/headerReducer";
 
 const FilledBasket = () => {
+  const selectedPizzas = useSelector((state) => state.cartSlicer.item);
+  const dispatch = useDispatch();
+  let countAllPizzas = 0;
+  let priceAllPizzas = 0;
+  selectedPizzas.map((u) => {
+    countAllPizzas += u.count;
+    priceAllPizzas += u.price * u.count;
+  });
+
   return (
     <div className={classes.container}>
       <div className="cart">
@@ -17,142 +25,34 @@ const FilledBasket = () => {
             <BasketSvg />
             Корзина
           </h2>
-          <div className="cart__clear">
+          <div onClick={() => dispatch(clearItems())} className="cart__clear">
             <TrashcanSvg />
             <span>Очистить корзину</span>
           </div>
         </div>
         <div className={classes.items}>
-          <div className="cart__item">
-            <div className="cart__item-img">
-              <img
-                className="pizza-block__image"
-                src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
-                alt="Pizza"
-              />
-            </div>
-            <div className="cart__item-info">
-              <h3>Сырный цыпленок</h3>
-              <p>тонкое тесто, 26 см.</p>
-            </div>
-            <div className="cart__item-count">
-              <div className="button button--outline button--circle cart__item-count-minus">
-                <MinusSvg />
-              </div>
-              <b>2</b>
-              <div className="button button--outline button--circle cart__item-count-plus">
-                <PlusSvg />
-              </div>
-            </div>
-            <div className="cart__item-price">
-              <b>770 ₽</b>
-            </div>
-            <div className="cart__item-remove">
-              <div className="button button--outline button--circle">
-                <CrossSvg />
-              </div>
-            </div>
-          </div>
-          <div className="cart__item">
-            <div className="cart__item-img">
-              <img
-                className="pizza-block__image"
-                src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
-                alt="Pizza"
-              />
-            </div>
-            <div className="cart__item-info">
-              <h3>Сырный цыпленок</h3>
-              <p>тонкое тесто, 26 см.</p>
-            </div>
-            <div className="cart__item-count">
-              <div className="button button--outline button--circle cart__item-count-minus">
-                <MinusSvg />
-              </div>
-              <b>2</b>
-              <div className="button button--outline button--circle cart__item-count-plus">
-                <PlusSvg />
-              </div>
-            </div>
-            <div className="cart__item-price">
-              <b>770 ₽</b>
-            </div>
-            <div className="cart__item-remove">
-              <div className="button button--outline button--circle">
-                <CrossSvg />
-              </div>
-            </div>
-          </div>
-          <div className="cart__item">
-            <div className="cart__item-img">
-              <img
-                className="pizza-block__image"
-                src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
-                alt="Pizza"
-              />
-            </div>
-            <div className="cart__item-info">
-              <h3>Сырный цыпленок</h3>
-              <p>тонкое тесто, 26 см.</p>
-            </div>
-            <div className="cart__item-count">
-              <div className="button button--outline button--circle cart__item-count-minus">
-                <MinusSvg />
-              </div>
-              <b>2</b>
-              <div className="button button--outline button--circle cart__item-count-plus">
-                <PlusSvg />
-              </div>
-            </div>
-            <div className="cart__item-price">
-              <b>770 ₽</b>
-            </div>
-            <div className="cart__item-remove">
-              <div className="button button--outline button--circle">
-                <CrossSvg />
-              </div>
-            </div>
-          </div>
-          <div className="cart__item">
-            <div className="cart__item-img">
-              <img
-                className="pizza-block__image"
-                src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
-                alt="Pizza"
-              />
-            </div>
-            <div className="cart__item-info">
-              <h3>Сырный цыпленок</h3>
-              <p>тонкое тесто, 26 см.</p>
-            </div>
-            <div className="cart__item-count">
-              <div className="button button--outline button--circle cart__item-count-minus">
-                <MinusSvg />
-              </div>
-              <b>2</b>
-              <div className="button button--outline button--circle cart__item-count-plus">
-                <PlusSvg />
-              </div>
-            </div>
-            <div className="cart__item-price">
-              <b>770 ₽</b>
-            </div>
-            <div className="cart__item-remove">
-              <div className="button button--outline button--circle">
-                <CrossSvg />
-              </div>
-            </div>
-          </div>
+          {selectedPizzas.map((u) => (
+            <Item
+              id={u.id}
+              count={u.count}
+              size={u.size}
+              dough={u.dough}
+              price={u.price}
+              title={u.title}
+              urlImg={u.urlImg}
+            />
+          ))}
         </div>
+
         <div className="cart__bottom">
           <div className="cart__bottom-details">
             <span>
               {" "}
-              Всего пицц: <b>3 шт.</b>{" "}
+              Всего пицц: <b>{countAllPizzas} шт.</b>{" "}
             </span>
             <span>
               {" "}
-              Сумма заказа: <b>900 ₽</b>{" "}
+              Сумма заказа: <b>{priceAllPizzas} ₽</b>{" "}
             </span>
           </div>
           <div className="cart__bottom-buttons">

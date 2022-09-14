@@ -1,6 +1,6 @@
 import classes from "./EmptyBasket.module.css";
 import smile from "../../../../img/smileFace.png";
-import ManSvg from "../../../Utility/ManSvg";
+import ManSvg from "../../../Utility/SVG/ManSvg";
 
 const EmptyBasket = () => {
   return (

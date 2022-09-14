@@ -1,17 +1,22 @@
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-import BasketSvg from "../../../Utility/BasketSvg";
+import BasketSvg from "../../../Utility/SVG/BasketSvg";
 
 const Basket = () => {
-  const countPizzas = useSelector((state) => state.cartSlicer.item).length;
-  const costOfPizzas = useSelector((state) => state.cartSlicer.item)
-    .map((u) => u.price)
-    .reduce((sum, current) => sum + current, 0);
-  debugger;
+  let countPizzas = 0;
+  let sumPizzas = 0;
+  const priceAndCount = useSelector((state) => state.cartSlicer.item)
+    .map((u) => {
+      return { price: u.price, count: u.count };
+    })
+    .forEach((element, key) => {
+      sumPizzas += element.price * element.count;
+      countPizzas += element.count;
+    });
   return (
     <div className="header__cart">
       <NavLink to={"/Basket"} className="button button--cart">
-        <span>{costOfPizzas} ₽</span>
+        <span>{sumPizzas} Р</span>
         <div className="button__delimiter"></div>
         <BasketSvg />
         <span>{countPizzas}</span>
